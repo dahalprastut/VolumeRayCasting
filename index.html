@@ -4,33 +4,71 @@
 		<meta charset="utf-8" />
 		<title>Volume Ray Casting</title>
 		<style>
-			* {
-				font-family: Arial, Helvetica, sans-serif;
-			}
 			body {
-				font-family: sans-serif;
+				margin: 0;
+				background-color: #000;
+				font-family: Arial, Helvetica, sans-serif;
+				color: #fff;
 			}
 			h1 {
-				font-size: 25px;
-				font-weight: 300;
+				font-size: 32px;
+				font-weight: 700;
 				text-align: center;
 			}
 			a {
 				display: block;
 				text-decoration: none;
 			}
+			.d-flex {
+				display: flex;
+			}
+
+			.button {
+				width: 130px;
+				height: 40px;
+				background-color: #fff;
+				color: #000;
+				border-radius: 20px;
+				display: flex;
+				justify-content: center;
+				text-align: center;
+				align-items: center;
+				text-decoration: none;
+				transition: 0.5s;
+			}
+			.button:hover {
+				text-decoration: none;
+				border: 1px solid #fff;
+				background-color: #000;
+				color: #fff;
+			}
 			.center {
+				max-width: 1000px;
+				margin: auto;
+			}
+			.mt-2 {
+				margin-top: 2rem;
+			}
+			.pb-2 {
+				padding-bottom: 2rem;
+			}
+			.text-center {
+				text-align: center;
+				padding: 0 10px;
+			}
+
+			.top-left {
+				justify-content: center;
 				display: flex;
 				flex-direction: column;
-				align-items: center;
+			}
+
+			.top .center {
+				justify-content: space-between;
 			}
 
 			.center span {
 				font-size: 12px;
-			}
-			.align-center {
-				width: 400px;
-				margin: auto;
 			}
 
 			.section > div {
@@ -40,20 +78,22 @@
 			}
 
 			.align-center span {
-				color: #000;
+				color: #fff;
 				text-decoration: none;
+				font-size: 16px;
 				margin-bottom: 1rem;
 			}
 			.align-center a {
 				color: #fff;
 				text-decoration: none;
-				width: 80px;
-				height: 30px;
-				margin-top: -5px;
 				background-color: #000;
+				margin-top: -12px;
 				display: flex;
 				justify-content: center;
 				align-items: center;
+			}
+			.align-center a:hover {
+				color: yellow;
 			}
 			.align-center a:hover {
 				text-decoration: none;
@@ -61,60 +101,189 @@
 			.border-bottom {
 				border-bottom: 1px solid #ccc;
 			}
-			.mt-2 {
-				margin-top: 2rem;
+
+			footer a {
+				text-decoration: underline;
+				color: #fff;
 			}
-			.pb-2 {
-				padding-bottom: 2rem;
+
+			footer a:hover {
+				color: yellow;
 			}
+
 			a:hover {
 				text-decoration: underline;
 			}
-			#larger {
-				font-size: 20px;
+
+			.explanation a {
+				color: #fff;
+				text-decoration: underline;
+				display: inline;
 			}
+
+			.explanation a:hover {
+				color: yellow;
+			}
+
+			p {
+				line-height: 22px;
+			}
+			.explanation ul {
+				margin-top: 10px;
+			}
+			.explanation ol {
+				margin-top: 25px;
+			}
+
+			.explanation li {
+				margin-top: 10px;
+				line-height: 32px;
+			}
+
 			#image {
 				height: 400px;
 			}
 		</style>
 	</head>
 	<body>
-		<h1>Adventures in Volume Ray Casting</h1>
-
-		<div class="center mt-2 pb-2 border-bottom">
-			<a href="./webgl2"><img id="image" src="preview.png" alt="Volume Rendering" /></a>
-			<span>Click the image to view</span>
+		<div class="top">
+			<div class="center d-flex">
+				<div class="top-left">
+					<h1>Adventures in Volume Ray Casting</h1>
+					<a href="./webgl2" class="button">View Project</a>
+				</div>
+				<div class="mt-2 pb-2">
+					<img id="image" src="preview.png" alt="Volume Rendering" />
+				</div>
+			</div>
 		</div>
-		<br />
-		<br />
 		<div class="border-bottom">
-			<div class="section align-center">
+			<div class="section center align-center">
 				<div>
+					<h2>Other Links</h2>
+				</div>
+				<div class="border-bottom">
+					<span>3D Volume Ray Tracing in WebGL 2.0</span>
+					<a href="./webgl2">View Project</a>
+				</div>
+				<div class="border-bottom">
 					<span>Single Ray</span>
-					<a href="./singleRayDemo">view</a>
+					<a href="./singleRayDemo">View Project</a>
 				</div>
-				<div>
+				<div class="border-bottom">
 					<span>2D Plane</span>
-					<a href="./planeDemo">view</a>
+					<a href="./planeDemo">View Project</a>
 				</div>
-				<div>
+				<div class="border-bottom">
 					<span>3D Volume Rendering on CPU</span>
-					<a href="./cpu">view</a>
+					<a href="./cpu">View Project</a>
 				</div>
-				<div>
+				<div class="border-bottom">
 					<span>Same, but with maximum intensity projection</span>
-					<a href="./maxValue">view</a>
+					<a href="./maxValue">View Project</a>
 				</div>
 				<div>
 					<span>Tool for generating 3D volumes</span>
-					<a href="./volumeGenerator">view</a>
+					<a href="./volumeGenerator">View Project</a>
 				</div>
-				<div>
-					<span id="larger">3D Volume Ray Tracing in WebGL 2.0</span>
-					<a href="./webgl2">view</a>
-				</div>
+
 				<br />
 			</div>
 		</div>
+		<div class="main border-bottom">
+			<div class="center">
+				<h2>Explanation on the Process</h2>
+				<div class="explanation">
+					<p>
+						For this project, I wanted to demonstrate how to run existing implementations of volume
+						visualization methods like "volume ray casting". Instead of writing the code myself, I looked
+						for available implementations on GitHub. Here's a step-by-step explanation of how I achieved
+						this:
+					</p>
+					<ol>
+						<li>
+							Finding the GitHub Project:
+							<ul>
+								<li>I conducted a search on GitHub for projects related to volume ray casting</li>
+								<li>
+									One of the repositories that caught my attention was the following:
+									<a href="https://github.com/RolandR/VolumeRayCasting" target="_blank"
+										>https://github.com/RolandR/VolumeRayCasting</a
+									>
+								</li>
+								<li>
+									This repository provided an implementation of volume ray casting, which I decided to
+									use for my project.
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							Forking the Repository:
+							<ul>
+								<li>
+									In order to have my own copy of the repository to work with, I clicked on the "Fork"
+									button on the top-right corner of the repository page.
+								</li>
+								<li>This created a copy of the repository under my GitHub account.</li>
+							</ul>
+						</li>
+						<li>
+							Enabling GitHub Pages:
+							<ul>
+								<li>
+									To host my project's webpage, I needed to enable GitHub Pages for my forked
+									repository.
+								</li>
+								<li>
+									I navigated to the settings of my forked repository and found the "GitHub Pages"
+									section.
+								</li>
+								<li>
+									From there, I selected the branch I wanted to use for GitHub Pages (in this case,
+									"master").
+								</li>
+								<li>Additionally, I specified the root folder where my webpage files were located.</li>
+							</ul>
+						</li>
+						<li>
+							Creating the Webpage:
+							<ul>
+								<li>
+									Inside my forked repository, I created an HTML file called "index.html" that would
+									serve as the main webpage for running the volume ray casting code.
+								</li>
+								<li>
+									I included the necessary code from the original repository and made any
+									modifications required to integrate it into my webpage.
+								</li>
+								<li>
+									I also took the opportunity to improve the design of the webpage by adding basic CSS
+									styles to enhance its appearance.
+								</li>
+							</ul>
+						</li>
+						<li>
+							Committing and Pushing Changes:
+							<ul>
+								<li>
+									Once I was satisfied with the changes I made to the repository, I committed the
+									modifications.
+								</li>
+								<li>
+									After committing, I pushed the changes to my forked repository on GitHub, ensuring
+									that all the necessary files were included.
+								</li>
+							</ul>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<footer class="mt-2 pb-2">
+			<div class="center text-center">
+				<a href="https://www.prastutdahal.com" target="_blank"> Prastut Dahal : https://www.prastutdahal.com</a>
+			</div>
+		</footer>
 	</body>
 </html>
